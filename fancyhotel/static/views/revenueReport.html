@@ -1,0 +1,32 @@
+
+
+<div ng-hide="{{loggedInBool}}" important>
+	<h1>You aren't logged in yet! Please <a href="#/login">login</a> to view this page.</h1>
+</div>
+
+<div ng-show="{{loggedInBool}}" important>
+<h1>Hello {{currentUser}} ! </h1><br />
+
+<div ng-show="{{userType=='customer'}}">
+  Only managers can vew reports. Please login to a manager account to view this page.
+</div>
+
+<div ng-show="{{userType=='manager'}}">
+	<h2>Revenue Report</h2><br /><br />
+
+<ul ng-repeat="(month, locgroup) in revenueReport">
+  <li>{{getMonth(month)}}</li>
+  <ul ng-repeat="(location, cost) in locgroup">
+    <li >{{location}}: {{cost}}</li>
+    </li>
+  </ul>
+</ul>
+
+
+
+
+
+</div>
+
+<a href="#/portal">Return to the portal page</a>
+</div>

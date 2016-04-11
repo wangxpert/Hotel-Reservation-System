@@ -1,0 +1,50 @@
+<h1>Register new Fancy Hotel Account</h1>
+
+
+<div ng-show="{{loggedInBool}}">
+  You're already logged in! Please proceed to the <a href="#/portal">user portal</a>
+</div>
+
+<div ng-hide="{{loggedInBool}}">
+<div class="container">
+  <h2>User registration</h2>
+
+  
+  <form role="form" ng-submit="submit()" name="register">
+  	<div class="form-group">
+      <label for="username">Username:</label>
+      <input type="username" class="form-control" placeholder="Username" ng-model="username" required ng-pattern="myRegex">
+      Usernames must start with a C followed by 4 letters or numbers.
+      <span ng-show="register.username.$error.pattern">
+       Please follow the username format!</span>
+    </div>
+    <div class="form-group">
+      <label for="username">First Name:</label>
+      <input type="name" class="form-control" placeholder="First name" ng-model="firstName" required>
+    </div>
+    <div class="form-group">
+      <label for="username">Last Name:</label>
+      <input type="name" class="form-control" placeholder="Last name" ng-model="lastName" required>
+    </div>
+  	<div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" placeholder="Email" ng-model="email" required>
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" class="form-control" placeholder="Password" ng-model="password" required>
+    </div>
+    <div class="form-group">
+      <label for="password">Confirm password:</label>
+      <input type="password" class="form-control" placeholder="Confirm password" ng-model="confirmPass" required>
+    </div>
+    <button type="submit" class="btn btn-default">Register</button>
+  </form>
+
+  Already have an account? <a href="#/login">Log-in here</a>
+</div>
+</div>
+
+<!--Anyone registering needs to go into the database as a CUSTOMER-->
+<!--Managers DO NOT register. EVER. They are prepopulated-->
+<!--If a manager wants to act as a customer, they must register a seperate account-->

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html ng-app="FancyHotelApp" >
+<head>
+	<style>
+		table{
+			width: 100%;
+		}
+		table, th, td {
+		    border: 1px solid black;
+		    border-collapse: collapse;
+		    
+		}
+		th, td {
+		    padding: 5px;
+		}
+	</style>
+	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>
+		Fancy Hotel
+	</title>
+
+ <!-- Latest compiled and minified CSS, Bootstrap -->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="static/libs/bootstrap-datepicker.css">
+</head>
+
+<body>
+
+<p><h1>Fancy Hotel 4400</h1></p>
+
+
+
+<div id="content" ng-view></div>
+
+<!--Scripts up in here-->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-route.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-resource.js"></script>
+
+<script src="static/js/controllers.js"></script>
+
+<!--Stuff below here is for Bootstrap-->
+<!-- jQuery library, the end goal is to not need this. -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="static/libs/moment.js"></script>
+<script src="static/libs/bootstrap-datepicker.js"></script>
+
+
+</body>
+</html>

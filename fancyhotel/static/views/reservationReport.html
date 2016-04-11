@@ -1,0 +1,36 @@
+<h1>Reservation Report</h1>
+
+<div ng-hide="{{loggedInBool}}" important>
+  <h1>You aren't logged in yet! Please <a href="#/login">login</a> to view this page.</h1>
+</div>
+
+<div ng-show="{{loggedInBool}}" important>
+<h1>Hello {{currentUser}} ! </h1><br />
+
+<div ng-show="{{userType=='customer'}}">
+  Only managers can vew reports. Please login to a manager account to view this page.
+</div>
+
+<div ng-show="{{userType=='manager'}}">
+<table>
+	<tr ng-repeat="(month, location) in data">
+		<td>
+			{{month}}, <ul><li ng-repeat="(place, count) in location"> {{place}}, {{count}}</li></td>
+	</tr>
+</table>
+
+<hr>
+
+<ul ng-repeat="(month, locgroup) in resReport">
+  <li>{{getMonth(month)}}</li>
+  <ul >
+    <li ng-repeat="(location, count) in locgroup">
+      {{location}}: {{count}}
+    </li>
+  </ul>
+</ul>
+
+</div>
+
+<a href="#/portal">Return to the portal page</a>
+</div>

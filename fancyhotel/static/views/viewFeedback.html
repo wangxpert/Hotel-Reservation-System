@@ -1,0 +1,47 @@
+<div ng-hide="{{loggedInBool}}" important>
+    <h1>You aren't logged in yet! Please <a href="#/login">login</a> to view this page.</h1>
+</div>
+
+
+<div ng-show="{{userType=='customer'}}">
+Hello {{currentUser}}!<br />
+
+<h2>View Review</h2>
+<div class="container"> 
+  <form class="form-group" ng-submit="getReviews()">
+        <label for="location">Hotel Location</label>
+            <select ng-model="location" required>
+                <option value="Atlanta" selected="selected">Atlanta</option>
+                <option value="Charlotte">Charlotte</option>
+                <option value="Savannah">Savannah</option>
+                <option value="Orlando">Orlando</option>
+                <option value="Miami">Miami</option>
+            </select>
+    
+    <button type="submit" class="btn btn-default">Check Reviews</button>
+  </form>
+</div>
+
+<div class="container" ng-show="viewPart2"> 
+
+{{emptyTable}} <!--will display a message if the table returned was empty-->
+
+<table ng-hide="hide">
+  <tr>
+    <th>Rating</th>
+    <th>Comment</th>		
+  </tr>
+  <tr ng-repeat="rating in reviews">
+    <td>{{reviews[$index].rating}}</td>
+    <td>{{rating.comment}}</td>
+  </tr>
+</table>
+
+
+</div> <!--div for viewPart2-->
+</div> <!--div for customer-->
+<a href="#/portal">Return to the portal page</a>
+<div ng-show="{{userType=='manager'}}">
+  Only customers can update reservations. Please login to your customer account to view this page.
+</div>
+

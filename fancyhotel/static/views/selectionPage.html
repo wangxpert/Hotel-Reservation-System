@@ -1,0 +1,25 @@
+<div ng-hide="{{loggedInBool}}" important>
+	<h1>You aren't logged in yet! Please <a href="#/login">login</a> to view this page.</h1>
+</div>
+
+<div ng-show="{{loggedInBool}}" important>
+<h1>Hello {{currentUser}} ! </h1><br />
+
+
+
+<div ng-show="{{userType=='customer'}}">
+  <p><a href="#/reserve">Make a new reservation</a> </p>
+  <p><a href="#/update">Update your reservation</a> </p>
+  <p><a href="#/cancel">Cancel reservation</a> </p>
+  <p><a href="#/provideFeedback">Provide feedback</a> </p>
+  <p><a href="#/viewFeedback">view feedback</a> </p>
+</div>
+
+<div ng-show="{{userType=='manager'}}">
+  <p><a href="#/resReport">View reservation Report</a> </p>
+  <p><a href="#/popCatReport">View popular room category report</a> </p>
+  <p><a href="#/revenueReport">View Revenue Report</a> </p>
+</div>
+
+<h2>You are a {{userType}}!</h2>
+</div>

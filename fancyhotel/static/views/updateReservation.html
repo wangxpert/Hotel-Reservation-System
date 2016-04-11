@@ -1,0 +1,101 @@
+<h1> Update Existing Reservation</h1>
+<div ng-hide="{{loggedInBool}}" important>
+	<h1>You aren't logged in yet! Please <a href="#/login">login</a> to view this page.</h1>
+</div>
+
+
+<div ng-show="{{userType=='customer'}}">
+Hello {{currentUser}}!<br />
+
+<div ng-show="viewPart1">
+Want to update your reservation? Please provide your Reservation ID number.<br />
+You can only update your reservation in terms of dates stayed. You cannot change your rooms or other options regarding your rooms. If you want to change your rooms or anything else, please <a href="#/cancel">cancel</a> your reservation and create a new one.<br />
+
+<form class="form-inline" role="form" ng-submit="findReservation()">
+    <div class="form-group">
+      <label for="resID">Reservation ID:</label>
+      <input class="form-control" placeholder="Reservation ID" ng-model="resID" required>
+    </div>
+    <button type="submit" class="btn btn-default">Find My Reservation</button>
+</form>
+
+Haven't reserved a room yet? <a href="#/searchroom">Search for available rooms here.</a><br /><br />
+</div> <!--Div for viewPart1-->
+<div ng-show="viewPart2">
+
+
+	Viewing reservation for reservation ID number {{resID}}.<br /><br />
+
+
+<table style="width:100%" >
+  <tr>
+    <th>Check-in Date</th><th>Check-out Date</th><th>Room Type</th><th>Room Capacity</th><th>Extra Bed</th><th>Extra Bed Cost per Night</th><th>Room Cost per Night</th>
+  </tr>
+  <tr ng-repeat="room in currRes.rooms">
+    <td>{{currRes.checkin_date}}</td>
+    <td>{{currRes.checkout_date}}</td>
+    <td>{{currRes.rooms[$index].room_type}}</td>
+    <td>{{currRes.rooms[$index].capacity}}</td>
+    <td>{{currRes.rooms[$index].extra_bed_or_not==1}}</td>
+    <td>{{currRes.rooms[$index].extra_bed_price}}</td>
+    <td>{{currRes.rooms[$index].cost}}</td>
+  </tr>
+</table><br />
+
+
+
+Current checkin date: {{currRes.checkin_date}}<br />
+Current checkout date: {{currRes.checkout_date}}<br />
+<div class="container">
+  <form ng-submit="searchAvailability()" class="form-horizontal">
+
+  	<label for="newStartDate">New Checkin Date:</label>
+  	<div class='input-group date' id='newStartDate'>
+        <input type="text" class="form-control" placeholder="Start Date" required>
+        <span class="input-group-addon">
+        <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+    </div>
+  	<label for="newEndDate">New Checkout Date:</label>
+  	<div class='input-group date' id='newEndDate'>
+        <input type="text" class="form-control" placeholder="End Date" required>
+        <span class="input-group-addon">
+        <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+    </div>
+
+  	<button type="submit" class="btn btn-default">Search availability</button>
+  </form>
+</div> <!--Div for the form container-->
+
+</div> <!--Div for viewPart2-->
+
+<div ng-show="viewPart3">
+	<hr />
+{{availability.message}}
+
+
+
+
+<form ng-submit="updateReservation()" ng-show="availability.avail">
+Cost of this updated reservation: {{newCost}}<br /><br />
+
+
+
+	<button type="submit" class="btn btn-default">Confirm Updated Reservation</button>
+</form>
+
+</div> <!--div of viewPart3-->
+
+<!--/div>  <!--mystery div? -->
+
+
+
+
+
+</div>
+<a href="#/portal">Return to the portal page</a>
+
+<div ng-show="{{userType=='manager'}}">
+  Only customers can update reservations. Please login to your customer account to view this page.
+</div>

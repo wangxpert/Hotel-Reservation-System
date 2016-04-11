@@ -1,0 +1,63 @@
+<div ng-hide="{{loggedInBool}}" important>
+    <h1>You aren't logged in yet! Please <a href="#/login">login</a> to view this page.</h1>
+</div>
+
+<div ng-show="{{loggedInBool}}" important>
+<h1>Hello {{currentUser}} ! </h1><br />
+<div ng-show="{{userType=='customer'}}">
+
+<h1>Payment Information</h1>
+<div class="container">	
+    <form ng-submit="addCard()">
+	    <h1>Add card</h1>
+        <div class="form-group">
+            <label for="cardname">Name on the card</label>
+            <input type="cardname" class="form-control" ng-model="cardName" required>
+        </div>
+        <div class="form-group">
+            <label for="cardname">Card Number</label>
+            <input type="cardnum" class="form-control" ng-model="creditCardNumber" required>
+        </div>
+        <div class="form-group">
+            <label for="expiredate">Expiration Date</label>
+            <div class='input-group date' id='expirationDatePicker'>
+                <input type="text" class="form-control" placeholder="Expiration Date" required>
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="cvv">CVV</label>
+            <input type="cvv" class="form-control" placeholder="xxx" ng-model="cvv" required>
+        </div>
+        <button type="submit" class="btn btn-default">Add Card</button>
+    </form>
+<br /><br />
+    <a href="#/searchroom">Back to Reservation Page</a>
+</div>
+
+
+<hr />
+
+<div class="container">	
+	    <h1>Delete card</h1>
+        <form ng-submit="deleteCard()">
+        <div class="form-group">
+        	<label for="4cardnum">Card number</label>
+            <select ng-model="cardToDelete">
+                <option  ng-repeat="card in creditCards" value="{{creditCards[$index].card_number}}">{{creditCards[$index].card_number}}</option> 
+            </select>
+        </div>
+        <button type="submit" class="btn btn-default">Delete Card</button>
+        </form>
+    </div>
+
+</div> <!--Customer div-->
+
+<a href="#/portal">Return to the portal page</a>
+</div> <!--Logged in Div-->
+
+<div ng-show="{{userType=='manager'}}">
+  Only customers can add and delete payment info. Please login to a customer account to access this page.
+</div>

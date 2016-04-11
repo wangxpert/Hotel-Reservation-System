@@ -1,0 +1,37 @@
+
+
+
+<div ng-hide="{{loggedInBool}}" important>
+	<h1>You aren't logged in yet! Please <a href="#/login">login</a> to view this page.</h1>
+</div>
+
+<div ng-show="{{loggedInBool}}" important>
+<h1>Hello {{currentUser}} ! </h1><br />
+
+<div ng-show="{{userType=='customer'}}">
+  Only managers can vew reports. Please login to a manager account to view this page.
+</div>
+
+<div ng-show="{{userType=='manager'}}">
+
+<h2>Popular Room-Category Report</h2>
+
+<ul ng-repeat="(month, locgroup) in popCatReport">
+  <li>{{getMonth(month)}}</li>
+  <ul ng-repeat="(location, stats) in locgroup">
+    <li >{{location}}</li>
+    	<ul ng-repeat="stat in stats">
+    		<li>
+    			{{stat.type}}: {{stat.count}}
+    		</li>
+    	</ul>
+    </li>
+  </ul>
+</ul>
+
+
+
+</div>
+
+<a href="#/portal">Return to the portal page</a>
+</div>

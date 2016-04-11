@@ -1,0 +1,79 @@
+<h1>Cancel Existing Reservation</h1>
+
+<div ng-hide="{{loggedInBool}}" important>
+	<h1>You aren't logged in yet! Please <a href="#/login">login</a> to view this page.</h1>
+</div>
+
+
+<div ng-show="{{userType=='customer'}}">
+Hello {{currentUser}}!<br />
+
+
+<div ng-show="cancelView1">
+Want to cancel a reservation? Please provide your Reservation ID number.
+
+<form class="form-inline" role="form" ng-submit="findReservation()">
+    <div class="form-group">
+      <label for="resID">Reservation ID:</label>
+      <input class="form-control" placeholder="Reservation ID" ng-model="resID" required>
+    </div>
+    <button type="submit" class="btn btn-default">Find My Reservation</button>
+</form>
+
+Haven't reserved a room yet? <a href="#/searchroom">Search for available rooms here.</a><br /><br />
+</div> <!--cancelView1 div-->
+
+
+<div ng-show="cancelView2">
+
+<div class="form-group">
+
+
+Viewing reservation for reservation ID number {{resID}}.<br /><br />
+
+
+<table style="width:100%" >
+  <tr>
+    <th>Check-in Date</th><th>Check-out Date</th><th>Room Type</th><th>Room Capacity</th><th>Extra Bed</th><th>Extra Bed Cost per Night</th><th>Room Cost per Night</th>
+  </tr>
+  <tr ng-repeat="room in currRes.rooms">
+    <td>{{currRes.checkin_date}}</td>
+    <td>{{currRes.checkout_date}}</td>
+    <td>{{currRes.rooms[$index].room_type}}</td>
+    <td>{{currRes.rooms[$index].capacity}}</td>
+    <td>{{currRes.rooms[$index].extra_bed_or_not==1}}</td>
+    <td>{{currRes.rooms[$index].extra_bed_price}}</td>
+    <td>{{currRes.rooms[$index].cost}}</td>
+  </tr>
+</table><br />
+
+
+
+Current checkin date: {{currRes.checkin_date}}<br />
+Current checkout date: {{currRes.checkout_date}}<br />
+
+</div> 
+<b>Cancellation policy:</b><br />
+<ul>
+<li>For any cancellation made one day before the start date - the customer is not refunded anything.</li>
+<li>For any cancellations made within 3 day window with respect to the start date - 20% of total reservation cost is forfeited and the rest 80% refunded to the customer.</li>
+<li>If the cancellation is made earlier than 3 days before the start date -full 100% refund is given.</li>
+</ul>
+
+<br /><br />
+	Total cost of reservation : ${{cancel_cost}} <br />
+	Cancellation Date : {{today | date: 'yyyy-MM-dd'}} (today)<br />
+	Refunded amount: ${{refund_amount}}<br />
+<form ng-submit="cancelReservation()">
+	<button type="submit" class="btn btn-default">Cancel Reservation</button>
+</form>
+
+</div> <!--The CancelView2 Div-->
+
+
+<a href="#/portal">Return to the portal page</a>
+</div>
+
+<div ng-show="{{userType=='manager'}}">
+  Only customers can update reservations. Please login to your customer account to view this page.
+</div>
